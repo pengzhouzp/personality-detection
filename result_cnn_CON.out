@@ -1,0 +1,139 @@
+SLURM_JOBID=193981
+SLURM_JOB_NODELIST=hbcomp-020
+SLURM_NNODES=1
+SLURMTMPDIR=
+working directory=/hb/home/marahimi/code
+/hb/software/apps/python/gnu-3.6.2/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+/hb/software/apps/python/gnu-3.6.2/lib/python3.6/site-packages/sklearn/cross_validation.py:41: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
+  "This module will be removed in 0.20.", DeprecationWarning)
+WARNING:tensorflow:From personality_cnn_CON.py:183: VocabularyProcessor.__init__ (from tensorflow.contrib.learn.python.learn.preprocessing.text) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use tensorflow/transform or tf.data.
+WARNING:tensorflow:From /hb/software/apps/python/gnu-3.6.2/lib/python3.6/site-packages/tensorflow/contrib/learn/python/learn/preprocessing/text.py:154: CategoricalVocabulary.__init__ (from tensorflow.contrib.learn.python.learn.preprocessing.categorical_vocabulary) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use tensorflow/transform or tf.data.
+WARNING:tensorflow:From /hb/software/apps/python/gnu-3.6.2/lib/python3.6/site-packages/tensorflow/contrib/learn/python/learn/preprocessing/text.py:170: tokenizer (from tensorflow.contrib.learn.python.learn.preprocessing.text) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use tensorflow/transform or tf.data.
+2018-06-10 19:50:08.219363: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+/hb/home/marahimi
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_1 (InputLayer)            (None, 129, 149)     0                                            
+__________________________________________________________________________________________________
+Embedding (Embedding)           (None, 129, 149, 300 7638300     input_1[0][0]                    
+__________________________________________________________________________________________________
+Reshape_Embedding (Reshape)     (None, 129, 149, 300 0           Embedding[0][0]                  
+__________________________________________________________________________________________________
+1Gram_TimeDistributed_Conv (Tim (None, 129, 149, 1,  60200       Reshape_Embedding[0][0]          
+__________________________________________________________________________________________________
+2Gram_TimeDistributed_Conv (Tim (None, 129, 148, 1,  120200      Reshape_Embedding[0][0]          
+__________________________________________________________________________________________________
+3Gram_TimeDistributed_Conv (Tim (None, 129, 147, 1,  180200      Reshape_Embedding[0][0]          
+__________________________________________________________________________________________________
+1Gram_TimeDistributed_Maxpool ( (None, 129, 1, 1, 20 0           1Gram_TimeDistributed_Conv[0][0] 
+__________________________________________________________________________________________________
+2Gram_TimeDistributed_Maxpool ( (None, 129, 1, 1, 20 0           2Gram_TimeDistributed_Conv[0][0] 
+__________________________________________________________________________________________________
+3Gram_TimeDistributed_Maxpool ( (None, 129, 1, 1, 20 0           3Gram_TimeDistributed_Conv[0][0] 
+__________________________________________________________________________________________________
+1Gram_TimeDistributed_Flatten ( (None, 129, 200)     0           1Gram_TimeDistributed_Maxpool[0][
+__________________________________________________________________________________________________
+2Gram_TimeDistributed_Flatten ( (None, 129, 200)     0           2Gram_TimeDistributed_Maxpool[0][
+__________________________________________________________________________________________________
+3Gram_TimeDistributed_Flatten ( (None, 129, 200)     0           3Gram_TimeDistributed_Maxpool[0][
+__________________________________________________________________________________________________
+Merge_n-grams (Concatenate)     (None, 129, 600)     0           1Gram_TimeDistributed_Flatten[0][
+                                                                 2Gram_TimeDistributed_Flatten[0][
+                                                                 3Gram_TimeDistributed_Flatten[0][
+__________________________________________________________________________________________________
+Reshape_Merge_Result (Reshape)  (None, 129, 600, 1)  0           Merge_n-grams[0][0]              
+__________________________________________________________________________________________________
+1-MaxPool (MaxPooling2D)        (None, 1, 600, 1)    0           Reshape_Merge_Result[0][0]       
+__________________________________________________________________________________________________
+1-Maxpool_Flatten (Flatten)     (None, 600)          0           1-MaxPool[0][0]                  
+__________________________________________________________________________________________________
+Mairesse_Input (InputLayer)     (None, 84)           0                                            
+__________________________________________________________________________________________________
+Merge_with_Mairesse (Concatenat (None, 684)          0           1-Maxpool_Flatten[0][0]          
+                                                                 Mairesse_Input[0][0]             
+__________________________________________________________________________________________________
+Fully_Connected_Layer (Dense)   (None, 16)           10960       Merge_with_Mairesse[0][0]        
+__________________________________________________________________________________________________
+Dense_out (Dense)               (None, 1)            17          Fully_Connected_Layer[0][0]      
+==================================================================================================
+Total params: 8,009,877
+Trainable params: 8,009,877
+Non-trainable params: 0
+__________________________________________________________________________________________________
+None
+Train on 1726 samples, validate on 741 samples
+Epoch 1/30
+
+ 200/1726 [==>...........................] - ETA: 2:29 - loss: 0.7832 - acc: 0.4350
+ 400/1726 [=====>........................] - ETA: 2:07 - loss: 0.7408 - acc: 0.4725
+ 600/1726 [=========>....................] - ETA: 1:47 - loss: 0.7223 - acc: 0.5017
+ 800/1726 [============>.................] - ETA: 1:27 - loss: 0.7193 - acc: 0.4925
+1000/1726 [================>.............] - ETA: 1:08 - loss: 0.7157 - acc: 0.4950
+1200/1726 [===================>..........] - ETA: 49s - loss: 0.7123 - acc: 0.5025 
+1400/1726 [=======================>......] - ETA: 30s - loss: 0.7083 - acc: 0.5050
+1600/1726 [==========================>...] - ETA: 11s - loss: 0.7054 - acc: 0.5062
+1726/1726 [==============================] - 182s 105ms/step - loss: 0.7043 - acc: 0.5064 - val_loss: 0.6854 - val_acc: 0.5533
+Epoch 2/30
+
+ 200/1726 [==>...........................] - ETA: 2:23 - loss: 0.6723 - acc: 0.6700
+ 400/1726 [=====>........................] - ETA: 2:07 - loss: 0.6777 - acc: 0.6325
+ 600/1726 [=========>....................] - ETA: 1:47 - loss: 0.6793 - acc: 0.6200
+ 800/1726 [============>.................] - ETA: 1:28 - loss: 0.6812 - acc: 0.6063
+1000/1726 [================>.............] - ETA: 1:09 - loss: 0.6802 - acc: 0.6080
+1200/1726 [===================>..........] - ETA: 49s - loss: 0.6777 - acc: 0.6158 
+1400/1726 [=======================>......] - ETA: 31s - loss: 0.6761 - acc: 0.6157
+1600/1726 [==========================>...] - ETA: 12s - loss: 0.6768 - acc: 0.6106
+1726/1726 [==============================] - 182s 106ms/step - loss: 0.6755 - acc: 0.6153 - val_loss: 0.6807 - val_acc: 0.5870
+Epoch 3/30
+
+ 200/1726 [==>...........................] - ETA: 2:23 - loss: 0.6583 - acc: 0.6800
+ 400/1726 [=====>........................] - ETA: 2:06 - loss: 0.6630 - acc: 0.6350
+ 600/1726 [=========>....................] - ETA: 1:47 - loss: 0.6578 - acc: 0.6517
+ 800/1726 [============>.................] - ETA: 1:28 - loss: 0.6602 - acc: 0.6437
+1000/1726 [================>.............] - ETA: 1:09 - loss: 0.6616 - acc: 0.6400
+1200/1726 [===================>..........] - ETA: 50s - loss: 0.6569 - acc: 0.6575 
+1400/1726 [=======================>......] - ETA: 31s - loss: 0.6561 - acc: 0.6600
+1600/1726 [==========================>...] - ETA: 12s - loss: 0.6562 - acc: 0.6606
+1726/1726 [==============================] - 182s 106ms/step - loss: 0.6555 - acc: 0.6634 - val_loss: 0.6768 - val_acc: 0.5884
+Epoch 4/30
+
+ 200/1726 [==>...........................] - ETA: 2:25 - loss: 0.6349 - acc: 0.7100
+ 400/1726 [=====>........................] - ETA: 2:05 - loss: 0.6306 - acc: 0.7050
+ 600/1726 [=========>....................] - ETA: 1:47 - loss: 0.6399 - acc: 0.6783
+ 800/1726 [============>.................] - ETA: 1:28 - loss: 0.6370 - acc: 0.6812
+1000/1726 [================>.............] - ETA: 1:09 - loss: 0.6351 - acc: 0.6850
+1200/1726 [===================>..........] - ETA: 50s - loss: 0.6329 - acc: 0.6892 
+1400/1726 [=======================>......] - ETA: 31s - loss: 0.6315 - acc: 0.6971
+1600/1726 [==========================>...] - ETA: 12s - loss: 0.6290 - acc: 0.6994
+1726/1726 [==============================] - 184s 106ms/step - loss: 0.6295 - acc: 0.6976 - val_loss: 0.6745 - val_acc: 0.5803
+Epoch 5/30
+
+ 200/1726 [==>...........................] - ETA: 2:21 - loss: 0.5821 - acc: 0.7900
+ 400/1726 [=====>........................] - ETA: 2:04 - loss: 0.5916 - acc: 0.7675
+ 600/1726 [=========>....................] - ETA: 1:47 - loss: 0.5884 - acc: 0.7700
+ 800/1726 [============>.................] - ETA: 1:29 - loss: 0.5808 - acc: 0.7825
+1000/1726 [================>.............] - ETA: 1:09 - loss: 0.5812 - acc: 0.7790
+1200/1726 [===================>..........] - ETA: 50s - loss: 0.5790 - acc: 0.7808 
+1400/1726 [=======================>......] - ETA: 31s - loss: 0.5811 - acc: 0.7786
+1600/1726 [==========================>...] - ETA: 12s - loss: 0.5799 - acc: 0.7737
+1726/1726 [==============================] - 183s 106ms/step - loss: 0.5814 - acc: 0.7671 - val_loss: 0.6768 - val_acc: 0.5911
+Epoch 6/30
+
+ 200/1726 [==>...........................] - ETA: 2:23 - loss: 0.5300 - acc: 0.8400
+ 400/1726 [=====>........................] - ETA: 2:06 - loss: 0.5229 - acc: 0.8525
+ 600/1726 [=========>....................] - ETA: 1:48 - loss: 0.5167 - acc: 0.8433
+ 800/1726 [============>.................] - ETA: 1:29 - loss: 0.5172 - acc: 0.8425
+1000/1726 [================>.............] - ETA: 1:09 - loss: 0.5196 - acc: 0.8400
+1200/1726 [===================>..........] - ETA: 51s - loss: 0.5231 - acc: 0.8342 
+1400/1726 [=======================>......] - ETA: 31s - loss: 0.5223 - acc: 0.8307
+1600/1726 [==========================>...] - ETA: 12s - loss: 0.5186 - acc: 0.8325
+1726/1726 [==============================] - 185s 107ms/step - loss: 0.5158 - acc: 0.8337 - val_loss: 0.6874 - val_acc: 0.5789
