@@ -1,0 +1,166 @@
+SLURM_JOBID=193899
+SLURM_JOB_NODELIST=hbcomp-017
+SLURM_NNODES=1
+SLURMTMPDIR=
+working directory=/hb/home/yweng5/personality-detection-master_git
+/hb/software/apps/python/gnu-3.6.2/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+/hb/software/apps/python/gnu-3.6.2/lib/python3.6/site-packages/sklearn/cross_validation.py:41: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
+  "This module will be removed in 0.20.", DeprecationWarning)
+WARNING:tensorflow:From personality_EXT.py:185: VocabularyProcessor.__init__ (from tensorflow.contrib.learn.python.learn.preprocessing.text) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use tensorflow/transform or tf.data.
+WARNING:tensorflow:From /hb/software/apps/python/gnu-3.6.2/lib/python3.6/site-packages/tensorflow/contrib/learn/python/learn/preprocessing/text.py:154: CategoricalVocabulary.__init__ (from tensorflow.contrib.learn.python.learn.preprocessing.categorical_vocabulary) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use tensorflow/transform or tf.data.
+WARNING:tensorflow:From /hb/software/apps/python/gnu-3.6.2/lib/python3.6/site-packages/tensorflow/contrib/learn/python/learn/preprocessing/text.py:170: tokenizer (from tensorflow.contrib.learn.python.learn.preprocessing.text) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use tensorflow/transform or tf.data.
+2018-06-10 14:36:02.615472: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+/hb/home/yweng5
+/hb/home/yweng5/glove.6B.300d.txt
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+Embedding_1 (Embedding)      (None, 129, 149, 300)     7638300   
+_________________________________________________________________
+Dropout_in (Dropout)         (None, 129, 149, 300)     0         
+_________________________________________________________________
+LSTM_1 (TimeDistributed)     (None, 129, 300)          721200    
+_________________________________________________________________
+Dropout_LSTM1 (Dropout)      (None, 129, 300)          0         
+_________________________________________________________________
+global_max_pooling1d_1 (Glob (None, 300)               0         
+=================================================================
+Total params: 8,359,500
+Trainable params: 8,359,500
+Non-trainable params: 0
+_________________________________________________________________
+None
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_1 (InputLayer)         (None, 84)                0         
+=================================================================
+Total params: 0
+Trainable params: 0
+Non-trainable params: 0
+_________________________________________________________________
+None
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+Merge (Merge)                (None, 384)               0         
+_________________________________________________________________
+hidden_layer (Dense)         (None, 16)                6160      
+_________________________________________________________________
+Dense_out (Dense)            (None, 1)                 17        
+=================================================================
+Total params: 8,365,677
+Trainable params: 8,365,677
+Non-trainable params: 0
+_________________________________________________________________
+None
+Train on 1726 samples, validate on 741 samples
+Epoch 1/50
+
+ 200/1726 [==>...........................] - ETA: 5:25 - loss: 0.8160 - acc: 0.5000
+ 400/1726 [=====>........................] - ETA: 4:41 - loss: 0.7854 - acc: 0.5250
+ 600/1726 [=========>....................] - ETA: 3:57 - loss: 0.7982 - acc: 0.5067
+ 800/1726 [============>.................] - ETA: 3:15 - loss: 0.7916 - acc: 0.5063
+1000/1726 [================>.............] - ETA: 2:32 - loss: 0.7927 - acc: 0.4980
+1200/1726 [===================>..........] - ETA: 1:50 - loss: 0.7921 - acc: 0.4900
+1400/1726 [=======================>......] - ETA: 1:08 - loss: 0.7878 - acc: 0.4807
+1600/1726 [==========================>...] - ETA: 26s - loss: 0.7781 - acc: 0.4788 
+1726/1726 [==============================] - 416s 241ms/step - loss: 0.7708 - acc: 0.4861 - val_loss: 0.6916 - val_acc: 0.5412
+Epoch 2/50
+
+ 200/1726 [==>...........................] - ETA: 5:18 - loss: 0.6835 - acc: 0.5450
+ 400/1726 [=====>........................] - ETA: 4:37 - loss: 0.6984 - acc: 0.5075
+ 600/1726 [=========>....................] - ETA: 3:55 - loss: 0.6942 - acc: 0.5217
+ 800/1726 [============>.................] - ETA: 3:13 - loss: 0.6949 - acc: 0.5113
+1000/1726 [================>.............] - ETA: 2:31 - loss: 0.6962 - acc: 0.5140
+1200/1726 [===================>..........] - ETA: 1:49 - loss: 0.6929 - acc: 0.5358
+1400/1726 [=======================>......] - ETA: 1:08 - loss: 0.6917 - acc: 0.5414
+1600/1726 [==========================>...] - ETA: 26s - loss: 0.6932 - acc: 0.5337 
+1726/1726 [==============================] - 414s 240ms/step - loss: 0.6926 - acc: 0.5353 - val_loss: 0.6940 - val_acc: 0.4926
+Epoch 3/50
+
+ 200/1726 [==>...........................] - ETA: 5:18 - loss: 0.6888 - acc: 0.5450
+ 400/1726 [=====>........................] - ETA: 4:36 - loss: 0.6845 - acc: 0.5700
+ 600/1726 [=========>....................] - ETA: 3:55 - loss: 0.6903 - acc: 0.5350
+ 800/1726 [============>.................] - ETA: 3:13 - loss: 0.6890 - acc: 0.5500
+1000/1726 [================>.............] - ETA: 2:31 - loss: 0.6900 - acc: 0.5410
+1200/1726 [===================>..........] - ETA: 1:49 - loss: 0.6889 - acc: 0.5458
+1400/1726 [=======================>......] - ETA: 1:08 - loss: 0.6871 - acc: 0.5521
+1600/1726 [==========================>...] - ETA: 26s - loss: 0.6870 - acc: 0.5488 
+1726/1726 [==============================] - 414s 240ms/step - loss: 0.6863 - acc: 0.5516 - val_loss: 0.6911 - val_acc: 0.5088
+Epoch 4/50
+
+ 200/1726 [==>...........................] - ETA: 5:17 - loss: 0.6812 - acc: 0.5600
+ 400/1726 [=====>........................] - ETA: 4:36 - loss: 0.6830 - acc: 0.5800
+ 600/1726 [=========>....................] - ETA: 3:54 - loss: 0.6835 - acc: 0.5750
+ 800/1726 [============>.................] - ETA: 3:12 - loss: 0.6805 - acc: 0.5875
+1000/1726 [================>.............] - ETA: 2:31 - loss: 0.6799 - acc: 0.5870
+1200/1726 [===================>..........] - ETA: 1:49 - loss: 0.6794 - acc: 0.5850
+1400/1726 [=======================>......] - ETA: 1:08 - loss: 0.6813 - acc: 0.5757
+1600/1726 [==========================>...] - ETA: 26s - loss: 0.6819 - acc: 0.5712 
+1726/1726 [==============================] - 414s 240ms/step - loss: 0.6824 - acc: 0.5713 - val_loss: 0.6915 - val_acc: 0.4980
+Epoch 5/50
+
+ 200/1726 [==>...........................] - ETA: 5:19 - loss: 0.6882 - acc: 0.5450
+ 400/1726 [=====>........................] - ETA: 4:37 - loss: 0.6858 - acc: 0.5625
+ 600/1726 [=========>....................] - ETA: 3:55 - loss: 0.6882 - acc: 0.5550
+ 800/1726 [============>.................] - ETA: 3:13 - loss: 0.6845 - acc: 0.5688
+1000/1726 [================>.............] - ETA: 2:31 - loss: 0.6836 - acc: 0.5640
+1200/1726 [===================>..........] - ETA: 1:49 - loss: 0.6827 - acc: 0.5658
+1400/1726 [=======================>......] - ETA: 1:08 - loss: 0.6823 - acc: 0.5657
+1600/1726 [==========================>...] - ETA: 26s - loss: 0.6827 - acc: 0.5594 
+1726/1726 [==============================] - 414s 240ms/step - loss: 0.6806 - acc: 0.5684 - val_loss: 0.6900 - val_acc: 0.5155
+Epoch 6/50
+
+ 200/1726 [==>...........................] - ETA: 5:19 - loss: 0.6813 - acc: 0.5700
+ 400/1726 [=====>........................] - ETA: 4:37 - loss: 0.6773 - acc: 0.5800
+ 600/1726 [=========>....................] - ETA: 3:55 - loss: 0.6763 - acc: 0.5867
+ 800/1726 [============>.................] - ETA: 3:13 - loss: 0.6761 - acc: 0.5900
+1000/1726 [================>.............] - ETA: 2:31 - loss: 0.6774 - acc: 0.5830
+1200/1726 [===================>..........] - ETA: 1:49 - loss: 0.6753 - acc: 0.5950
+1400/1726 [=======================>......] - ETA: 1:08 - loss: 0.6765 - acc: 0.5907
+1600/1726 [==========================>...] - ETA: 26s - loss: 0.6774 - acc: 0.5894 
+1726/1726 [==============================] - 414s 240ms/step - loss: 0.6773 - acc: 0.5881 - val_loss: 0.6878 - val_acc: 0.5358
+Epoch 7/50
+
+ 200/1726 [==>...........................] - ETA: 5:18 - loss: 0.6708 - acc: 0.6200
+ 400/1726 [=====>........................] - ETA: 4:37 - loss: 0.6779 - acc: 0.5875
+ 600/1726 [=========>....................] - ETA: 3:55 - loss: 0.6761 - acc: 0.5833
+ 800/1726 [============>.................] - ETA: 3:13 - loss: 0.6753 - acc: 0.5800
+1000/1726 [================>.............] - ETA: 2:31 - loss: 0.6772 - acc: 0.5620
+1200/1726 [===================>..........] - ETA: 1:49 - loss: 0.6760 - acc: 0.5625
+1400/1726 [=======================>......] - ETA: 1:08 - loss: 0.6764 - acc: 0.5614
+1600/1726 [==========================>...] - ETA: 26s - loss: 0.6759 - acc: 0.5619 
+1726/1726 [==============================] - 414s 240ms/step - loss: 0.6751 - acc: 0.5643 - val_loss: 0.6876 - val_acc: 0.5344
+Epoch 8/50
+
+ 200/1726 [==>...........................] - ETA: 5:20 - loss: 0.6859 - acc: 0.4950
+ 400/1726 [=====>........................] - ETA: 4:37 - loss: 0.6785 - acc: 0.5300
+ 600/1726 [=========>....................] - ETA: 3:55 - loss: 0.6741 - acc: 0.5483
+ 800/1726 [============>.................] - ETA: 3:13 - loss: 0.6754 - acc: 0.5512
+1000/1726 [================>.............] - ETA: 2:31 - loss: 0.6754 - acc: 0.5500
+1200/1726 [===================>..........] - ETA: 1:49 - loss: 0.6751 - acc: 0.5592
+1400/1726 [=======================>......] - ETA: 1:08 - loss: 0.6758 - acc: 0.5600
+1600/1726 [==========================>...] - ETA: 26s - loss: 0.6743 - acc: 0.5669 
+1726/1726 [==============================] - 414s 240ms/step - loss: 0.6729 - acc: 0.5713 - val_loss: 0.6881 - val_acc: 0.5358
+Epoch 9/50
+
+ 200/1726 [==>...........................] - ETA: 5:18 - loss: 0.6707 - acc: 0.6150
+ 400/1726 [=====>........................] - ETA: 4:36 - loss: 0.6731 - acc: 0.5925
+ 600/1726 [=========>....................] - ETA: 3:55 - loss: 0.6689 - acc: 0.5933
+ 800/1726 [============>.................] - ETA: 3:13 - loss: 0.6682 - acc: 0.5925
+1000/1726 [================>.............] - ETA: 2:31 - loss: 0.6726 - acc: 0.5800
+1200/1726 [===================>..........] - ETA: 1:49 - loss: 0.6752 - acc: 0.5692
+1400/1726 [=======================>......] - ETA: 1:08 - loss: 0.6756 - acc: 0.5621
+1600/1726 [==========================>...] - ETA: 26s - loss: 0.6714 - acc: 0.5694 
+1726/1726 [==============================] - 414s 240ms/step - loss: 0.6722 - acc: 0.5701 - val_loss: 0.6896 - val_acc: 0.5317
+personality_EXT.py:283: UserWarning: The `Merge` layer is deprecated and will be removed after 08/2017. Use instead layers from `keras.layers.merge`, e.g. `add`, `concatenate`, etc.
+  merged = Merge([modelleft,modelright], mode='concat',name='Merge')
